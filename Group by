@@ -1,0 +1,21 @@
+import pandas as pd
+ipl_data = {'Team': ['Riders', 'Riders', 'Devils', 'Devils', 'Kings',
+   'kings', 'Kings', 'Kings', 'Riders', 'Royals', 'Royals', 'Riders'],
+   'Rank': [1, 2, 2, 3, 3,4 ,1 ,1,2 , 4,1,2],
+   'Year': [2014,2015,2014,2015,2014,2015,2016,2017,2016,2014,2015,2017],
+   'Points':[876,789,863,673,741,812,756,788,694,701,804,690]}
+df = pd.DataFrame(ipl_data)
+print(df)
+
+What is the sum(could be count as well) of points on a Team basis over the entire dataset. 
+In SQL: select team, sum(points) from df group by team order by team;
+
+sum_points_Team=df.groupby("Team")["Points"].sum()
+sum_points_Team.head(5)
+
+GROUP BY 2 COLUMNS
+sum_points = df.groupby(['Team', 'Rank'])['Points'].sum()
+
+To change the result to appear as a corresponding SQL use as_index=False
+
+GROUP BY explicitly uses ORDER BY, in case you do not want it ordered use sort = FALSE
